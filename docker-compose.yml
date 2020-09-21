@@ -1,0 +1,38 @@
+version: '3.1'
+
+services:
+  db:
+    image: mongo:latest
+    container_name: db
+    environment:
+      MONGO_INITDB_DATABASE: Arep
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+    ports:
+      - 27017:27017
+
+    command: mongod
+
+  balancer:
+    build:
+      context: ./LoadBalancer
+      dockerfile: Dockerfile
+    ports:
+      - "8084:6000"
+
+  web:
+    build:
+      context: ./SparkD2
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8081-8083:6000"
+
+volumes:
+  mongodb:
+  mongodb_config:
