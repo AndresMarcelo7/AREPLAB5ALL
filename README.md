@@ -3,7 +3,7 @@
 This repo contains LOAD BALANCER Code + WEB SERVER code +DOCKER COMPOSE file in order to generate 
 the Docker images faster.
 
-The documentation and CircleCI Badges are [HERE](https://github.com/AndresMarcelo7/AREP-LAB5)
+The documentation and CircleCI Badges are [HERE](https://github.com/AndresMarcelo7/AREP-LAB5#Repos)
 
 Clone this repository and if you want to locally run the network please run the following command:
 ```
